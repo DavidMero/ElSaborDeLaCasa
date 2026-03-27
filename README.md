@@ -1,0 +1,4 @@
+- Qué hace el proyecto
+- Cómo ejecutarlo
+- Tecnologías usadas
+- Estructura del proyecto
