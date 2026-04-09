@@ -12,9 +12,14 @@ services:
   db:
     container_name: mariadb.service.ESDLC
     image: mariadb:10.4.32
-    restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: 1234
-      MYSQL_DATABASE: ESDLC
+     MYSQL_ROOT_PASSWORD: 1234
+     MYSQL_DATABASE: ESDLC
     ports:
       - "3306:3306"
+    volumes:
+      - database:/var/lib/mysql
+      - ./database:/docker-entrypoint-initdb.d
+      
+volumes:
+  database:
