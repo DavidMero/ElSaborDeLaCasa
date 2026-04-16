@@ -1,19 +1,9 @@
 <header class="top-bar">
-    <form action="">
-        <input type="search" placeholder="Introducir receta">
+    <img src="" alt="">
+    <form method="post" action="../index.php">
+        <input type="search" name="busqueda" placeholder="Introducir receta">
+        <input type="submit" name="buscar" value="Buscar">
         <input type="button" value="Filtro">
-        <input type="button" value="ORdenar">
+        <input type="button" value="Ordenar">
     </form>
 </header>
-
-<?php
-include "config/db.php";
-
-$q = $_POST['nombre'] ?? '';
-
-/* Comprobamos que no esté vacía la variable y buscamos la receta */
-if (!empty($q)) {
-    $conexion = conexionDB();
-    $resultado = buscarReceta($conexion, $q);
-}
-?>

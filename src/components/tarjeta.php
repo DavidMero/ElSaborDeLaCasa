@@ -1,9 +1,16 @@
 <div class="tarjetas">
     <div class="tarjeta">
-        <img src="">
+        <img src="" alt="">
+        <?php
+        foreach (parsearImagenes($receta['imagen']) as $img) {
+            echo "<img src='$img' alt=''>";
+        }
+        ?>
         <div class="info">
             <div class="top">
-                <span>NOMBRE DE RECETA</span>
+                <span>
+                    <?php echo $receta['nombre'] ?>
+                </span>
                 <span class="autor">Autor</span>
             </div>
             <div class="icons">

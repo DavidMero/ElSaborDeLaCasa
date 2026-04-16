@@ -16,7 +16,6 @@ function conexionDB()
 
 function buscarReceta($conexion, $nombre)
 {
-
     try {
         $sql = "SELECT * FROM recetas WHERE nombre = ?";
         $declaracion = $conexion->prepare($sql);
@@ -26,4 +25,22 @@ function buscarReceta($conexion, $nombre)
         echo "Error" . $e->getMessage();
     }
 }
+
+function parsearImagenes($texto) {
+
+    // separar por coma
+    preg_match_all('/"([^"]+)"/', $texto, $matches);
+
+    return $matches[1];
+}
+
+$q = $_POST['busqueda'] ?? '';
+
+/* Comprobamos que no esté vacía la variable y buscamos la receta */
+if (!empty($q)) {
+    $conexion = conexionDB();
+    $resultado = buscarReceta($conexion, $q);
+}
+
 ?>
+
