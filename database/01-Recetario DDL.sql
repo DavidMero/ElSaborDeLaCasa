@@ -13,7 +13,8 @@ dificultad ENUM('Fácil', 'Medio', 'Hard'),
 tecnicas_culinarias ENUM('Ahumar','curar','secar','Plancha','Caramelizar'),
 tipo_cocina ENUM('Italiana', 'Japonesa', 'Francesa', 'Española', 'India', 'China'),
 valor_nutricional SMALLINT,
-fecha_publicacion DATE
+fecha_publicacion DATE,
+FULLTEXT(nombre)
 );
 
 CREATE TABLE cuentas(
