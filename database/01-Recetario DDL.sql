@@ -5,15 +5,14 @@ USE ESDLC;
 CREATE TABLE recetas(
 id_receta VARCHAR(50) PRIMARY KEY UNIQUE,
 nombre VARCHAR(50),
-descripcion VARCHAR(50),
+descripcion TEXT,
 instrucciones TEXT,
 imagen TEXT,
-tiempo ENUM('10 Min', '20 Min', '30 min', '1 Hora', '2 Horas'),
-dificultad ENUM('Fácil', 'Medio', 'Hard'),
-tecnicas_culinarias ENUM('Ahumar','curar','secar','Plancha','Caramelizar'),
-tipo_cocina ENUM('Italiana', 'Japonesa', 'Francesa', 'Española', 'India', 'China'),
+tiempo TEXT,
+tecnicas_culinarias TEXT,
+tipo_cocina TEXT,
 valor_nutricional SMALLINT,
-fecha_publicacion DATE,
+fecha_publicacion TEXT,
 FULLTEXT(nombre)
 );
 

@@ -1,4 +1,3 @@
-<?php include "config/db.php" ?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -10,16 +9,24 @@
 </head>
 
 <body>
-    <?php include "components/header.php" ?>
-    <div class="tarjetas">
-        <?php 
+    <?php include "config/db.php" ?>
+
+    <header>
+        <?php include "components/cabecera.php" ?>
+    </header>
+
+    <main class="tarjetas">
+        <?php
         if (!empty($q)) {
-            foreach ($resultado as $receta) {
+            foreach ($recetas as $receta) {
                 include "components/tarjeta.php";
             }
         }
         ?>
-    </div>
+    </main>
+    <footer>
+        
+    </footer>
 </body>
 
 </html>

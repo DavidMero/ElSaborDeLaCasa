@@ -8,18 +8,25 @@ services:
       - db
     volumes:
       - ./src:/var/www/html
+    environment:
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
 
   db:
     container_name: mariadb.service.ESDLC
     image: mariadb:10.4.32
     environment:
-     MYSQL_ROOT_PASSWORD: 1234
-     MYSQL_DATABASE: ESDLC
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
     ports:
       - "3306:3306"
     volumes:
       - database:/var/lib/mysql
       - ./database:/docker-entrypoint-initdb.d
-      
+
 volumes:
   database:

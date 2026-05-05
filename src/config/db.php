@@ -1,9 +1,10 @@
 <?php
 function conexionDB()
 {
-    $nameDB = "ESDLC";
-    $username = "root";
-    $password = "1234";
+
+    $nameDB = getenv('MYSQL_DATABASE');
+    $username = 'root'; /* Cambiar antes de desplegar */
+    $password = getenv('MYSQL_ROOT_PASSWORD');
     $conn = null;
 
     try {
@@ -14,60 +15,27 @@ function conexionDB()
     }
 }
 
-function buscarReceta($conexion, $nombre)
+function buscarRecetas($conexion, $busqueda)
 {
     try {
-        $sql = "SELECT *
+        $sql = "SELECT *, MATCH(nombre) AGAINST(?) AS relevancia
                 FROM recetas
-                WHERE MATCH(nombre) AGAINST(?) > 0.1
+                WHERE MATCH(nombre) AGAINST(?)
+                ORDER BY relevancia DESC
                 LIMIT 20";
 
-        $stmt = $conexion->prepare($sql);
-        $stmt->execute([$nombre, $nombre]);
-
-        $resultados = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        foreach ($resultados as &$receta) {
-            $receta['similitud'] = similitudTexto($nombre, $receta['nombre']);
-        }
-
-        usort($resultados, function ($a, $b) {
-            $scoreA = $a['puntuacion'] + $a['similitud'];
-            $scoreB = $b['puntuacion'] + $b['similitud'];
-            return $scoreB <=> $scoreA;
-        });
-
-        return array_slice($resultados, 0, 10);
+        $resultado = $conexion->prepare($sql);
+        $resultado->execute([$busqueda, $busqueda]);
+        
+        return $resultado->fetchAll(PDO::FETCH_ASSOC);
 
     } catch (PDOException $e) {
         echo "Error: " . $e->getMessage();
     }
 }
 
-function similitudTexto($a, $b)
-{
-    $a = mb_strtolower(trim($a));
-    $b = mb_strtolower(trim($b));
+function parsearImagenes($texto) {
 
-    if ($a === $b) {
-        return 1.0;
-    }
-
-    $maxLen = max(strlen($a), strlen($b));
-
-    if ($maxLen === 0) {
-        return 1.0;
-    }
-
-    $distancia = levenshtein($a, $b);
-
-    $similitud = 1 - ($distancia / $maxLen);
-
-    return max(0, min(1, $similitud));
-}
-
-function parsearImagenes($texto)
-{
     // separar por coma
     preg_match_all('/"([^"]+)"/', $texto, $matches);
 
@@ -79,7 +47,7 @@ $q = $_POST['busqueda'] ?? '';
 /* Comprobamos que no esté vacía la variable y buscamos la receta */
 if (!empty($q)) {
     $conexion = conexionDB();
-    $resultado = buscarReceta($conexion, $q);
+    $recetas = buscarRecetas($conexion, $q);
 }
 
 ?>
