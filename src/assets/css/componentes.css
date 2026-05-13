@@ -1,0 +1,155 @@
+/* Variables */
+
+:root {
+    --naranja10: #fce5d8;
+    --naranja20: #f9c9b0;
+    --naranja30: #f6ad88;
+    --naranja40: #f38f60;
+    --naranja50: #f07238;
+    --naranja60: #ed5410;
+    --naranja70: #c4430c;
+    --naranja80: #9a3208;
+    --naranja90: #6f2104;
+
+    --gris10: #f0f0f0;
+    --gris20: #d9d9d9;
+    --gris30: #c2c2c2;
+    --gris40: #ababab;
+    --gris50: #949494;
+    --gris60: #7d7d7d;
+    --gris70: #666666;
+    --gris80: #4f4f4f;
+    --gris90: #383838;
+
+    --verde10: #d0f0c0;
+    --verde20: #b0e0a0;
+    --verde30: #90d080;
+    --verde40: #70c060;
+    --verde50: #50b040;
+    --verde60: #30a020;
+    --verde70: #109000;
+    --verde80: #088800;
+    --verde90: #048400;
+}
+
+/* Componentes */
+
+.cabecera {
+    height: 8vh;
+    padding: 10px;
+    background-color: var(--naranja40);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .logotipo {
+        height: 100%;
+    }
+
+    form {
+        display: flex;
+        flex-direction: row;
+        gap: 16px;
+    }
+
+    .contenedor-busqueda {
+        display: flex;
+        align-items: center;
+
+        height: min-content;
+        border: 2px solid var(--naranja60);
+        border-radius: 16px;
+    }
+
+    .barra-busqueda {
+        padding: 10px;
+        width: 250px;
+        border: 0;
+        border-radius: 16px 0 0 16px;
+    }
+
+    .boton-busqueda {
+        border: none;
+        padding: 10px 20px;
+        border-radius: 0 16px 16px 0;
+    }
+}
+
+.pie-pagina {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 4fr 1fr;
+    grid-template-areas:
+        "logotipo redes-sociales detalles"
+        "copyright copyright copyright";
+
+    background: var(--naranja40);
+    justify-items: center;
+    align-items: center;
+
+    .logotipo {
+        grid-area: logotipo;
+    }
+
+    .redes-sociales {
+        grid-area: redes-sociales;
+
+        display: flex;
+        flex-direction: column;
+    }
+
+    .detalles {
+        grid-area: detalles;
+    }
+
+    .copyright {
+        grid-area: copyright;
+
+        width: 100%;
+        height: 100%;
+        background: var(--verde90);
+        color: white;
+    }
+}
+
+/* Clases genéricas */
+.boton {
+    border: 2px solid var(--naranja60);
+    border-radius: 20px;
+    color: var(--naranja60);
+    padding: 10px;
+    height: min-content;
+}
+
+.boton:hover {
+    background-color: var(--naranja60);
+}
+
+.categoria {
+    text-align: center;
+    border: 1px solid black;
+    width: max-content;
+    background-color: blue;
+    /* Cambiar color */
+    padding: 4px;
+    transition: 0.2s;
+}
+
+.categoria:hover {
+    background-color: orange;
+}
+
+
+/* Ver donde va */
+.intruccion {
+    border: 1px solid black;
+}
+
+.comentario {
+    border: 1px solid black;
+    width: 550px;
+
+    /*display: grid;*/
+    /*grid-template-columns: 1fr 1fr 1fr;*/
+}

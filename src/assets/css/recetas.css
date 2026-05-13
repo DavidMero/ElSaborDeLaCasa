@@ -1,0 +1,54 @@
+/* Normalizar CSS */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+    outline: none;
+}
+
+.pagina-receta {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.portada {
+}
+
+main {
+    background-color: pink;
+    display: flex;
+    min-height: 400px;
+
+    aside {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        background: red;
+        min-width: 25%;
+    }
+
+    .herramientas {}
+
+    .categorias {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .instrucciones {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: auto;
+        gap: 10px;
+    }
+}
+
+.comentarios {
+    background-color: blue;
+    min-height: 150px;
+}
